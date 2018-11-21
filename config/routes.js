@@ -33,6 +33,11 @@ module.exports.routes = {
   'GET /test/': 'TestController/index',
   'GET /logout/': 'AuthController/logout',
 
+  'GET /token/login/': 'TokenController/loginPage',
+  'GET /token/home/': 'TokenController/homePage',
+  'POST /token/login/': 'TokenController/loginAct',
+  'POST /token/logout/': 'TokenController/logout',
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

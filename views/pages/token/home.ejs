@@ -1,0 +1,35 @@
+<h1>Hi, </h1>
+<a href="logout" id="logout">Logout</a>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(function(){
+        if (!localStorage.getItem('t0k3n')) {
+            window.location = './login';
+        }
+
+        $("#logout").click(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'http://localhost:1337/token/logout',
+                method: 'POST',
+                beforeSend: function(request) {
+                    const token = localStorage.getItem('t0k3n');
+                    request.setRequestHeader("token", token);
+                },
+                success: function(res){
+                    localStorage.removeItem('t0k3n');
+                    window.location = './login';
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            })
+        })
+    })
+</script>

@@ -1,0 +1,42 @@
+<h1>Login Page</h1>
+<hr>
+
+<form id="form-login">
+    <input type="text" name="username" id="username" placeholder="username" required/>
+    <input type="password" name="password" id="password" placeholder="password" required/>
+    <button type="submit">Login</button>
+</form>
+
+<div class="error"></div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(function(){
+        if (localStorage.getItem('t0k3n')) {
+            window.location = './home';
+        }
+        
+        $("#form-login").submit(function(e){
+            e.preventDefault();
+            $.ajax({
+                url: 'http://localhost:1337/token/login',
+                method: 'POST',
+                data: {  // di postman === body
+                    username: $("#username").val(),
+                    password: $("#password").val()
+                },
+                success: function(res){
+                    localStorage.setItem('t0k3n', res.token);
+                    window.location = './home';
+                },
+                error: function(err){
+                    console.log(err);
+                }
+            });
+        });
+    })
+</script>
