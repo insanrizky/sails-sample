@@ -14,7 +14,8 @@
     "sails": "^1.0.2",
     "sails-hook-grunt": "^3.0.2",
     "sails-hook-orm": "^2.0.0-16",
-    "sails-hook-sockets": "^1.4.0"
+    "sails-hook-sockets": "^1.4.0",
+    "sails-mysql": "1.0.1"
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3",
@@ -22,7 +23,7 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "nodemon --nolazy --inspect=9229 app.js",
+    "start": "nodemon app.js",
     "test": "node ./node_modules/mocha/bin/mocha test/lifecycle.test.js test/integration/**/*.test.js",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
