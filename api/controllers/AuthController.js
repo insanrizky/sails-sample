@@ -14,36 +14,31 @@ module.exports = {
         message: req.query.message
       });
   },
-  loginAction: function(req, res) {
+  loginAction: async function(req, res) {
       const md5 = require('md5');
-      const accounts = [
-        {
-          username: 'admin',
-          password: md5('admin')
-        },
-        {
-          username: 'hero',
-          password: md5('winner')
-        }
-      ];
-
       const response = {
         message: "username tidak ditemukan!"
       };
 
-      accounts.forEach(acc => {
-        if (req.body.username === acc.username) {
-          if (md5(req.body.password) === acc.password) {
-            response.message = "login berhasil";
-            
-            req.session.username = req.body.username;
-            
-            res.redirect('home');
-          } else {
-            response.message = "password salah!";
-          }
-        }
+      let accounts = await Accounts.findOne({
+        email: req.body.username
       });
+
+      if (accounts) {
+        accounts = await Accounts.findOne({
+          email: req.body.username,
+          password: md5(req.body.password)
+        });
+
+        if( accounts ){
+            response.message = "login berhasil";
+            req.session.username = req.body.username;
+            res.redirect('home');
+        } else {
+          response.message = "password salah!";
+        }
+      }
+
       res.redirect('login?message='+response.message);
   },
   homePage: function(req, res) {
@@ -57,6 +52,23 @@ module.exports = {
   logout: function(req, res) {
     delete req.session.username;
     return res.redirect('login');
+  },
+  database: async function(req, res){
+    const md5 = require('md5');
+    // INSERT INTO accounts (email, password) VALUES ('asdfadsf@mail.com', md5('asdfaf'));
+    // await Accounts.create({
+    //   email: 'asdfadsf@mail.com',
+    //   password: md5('asdfaf')
+    // });
+
+    // UPDATE accounts SET email='budi@airbnb.co.id' WHERE id=10
+    await Accounts.update({
+      id: 10  // where field=value
+    }, {
+      email: 'budi@airbnb.co.id'  // set field=value
+    })
+    const rows = await Accounts.find();
+    return res.send(rows);
   }
 };
 
