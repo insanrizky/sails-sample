@@ -38,6 +38,7 @@ module.exports.routes = {
   'POST /token/login/': 'TokenController/loginAct',
   'POST /token/logout/': 'TokenController/logout',
 
+  'GET /database/': 'AuthController/database',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
