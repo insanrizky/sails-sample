@@ -1,0 +1,9 @@
+Command to generate all necessary models:
+
+sails generate model alamat id id_account nama alamat id_prov id_kota id_kec && sails generate model types id type && sails generate model places id id_type id_account nama deskripsi harga gambar id_prov id_kota id_kecamatan alamat && sails generate model province id name && sails generate model regency id province_id name && sails generate model district id regency_id name && sails generate model booking id id_account id_place from_date to_date status total_harga
+
+----------------------------
+
+Command to generate all necessary controllers:
+
+sails generate controller account && sails generate controller place && sails generate controller province && sails generate controller regency && sails generate controller district && sails generate controller type && sails generate controller alamat
