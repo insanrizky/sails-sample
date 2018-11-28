@@ -54,21 +54,23 @@ module.exports = {
     return res.redirect('login');
   },
   database: async function(req, res){
-    const md5 = require('md5');
-    // INSERT INTO accounts (email, password) VALUES ('asdfadsf@mail.com', md5('asdfaf'));
-    // await Accounts.create({
-    //   email: 'asdfadsf@mail.com',
-    //   password: md5('asdfaf')
-    // });
+    const data = await Provinces.find({});
+    return res.send(data);
+    // const md5 = require('md5');
+    // // INSERT INTO accounts (email, password) VALUES ('asdfadsf@mail.com', md5('asdfaf'));
+    // // await Accounts.create({
+    // //   email: 'asdfadsf@mail.com',
+    // //   password: md5('asdfaf')
+    // // });
 
-    // UPDATE accounts SET email='budi@airbnb.co.id' WHERE id=10
-    await Accounts.update({
-      id: 10  // where field=value
-    }, {
-      email: 'budi@airbnb.co.id'  // set field=value
-    })
-    const rows = await Accounts.find();
-    return res.send(rows);
+    // // UPDATE accounts SET email='budi@airbnb.co.id' WHERE id=10
+    // await Accounts.update({
+    //   id: 10  // where field=value
+    // }, {
+    //   email: 'budi@airbnb.co.id'  // set field=value
+    // })
+    // const rows = await Accounts.find();
+    // return res.send(rows);
   }
 };
 
