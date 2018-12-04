@@ -6,7 +6,16 @@
  */
 
 module.exports = {
-  
+    list: async (req, res) => {
+      const data = await Regencies.find();
+      return res.send(data);
+    },
+    getByProvince: async (req, res) => {
+      const data = await Regencies.find({
+          province_id: req.param('province')
+      });
+      return res.send(data);
+    }  
 
 };
 
