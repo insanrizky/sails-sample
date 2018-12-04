@@ -44,7 +44,14 @@ module.exports.routes = {
   
   'GET /account/id/:id': 'AccountController/listByID',
   'GET /place': 'PlaceController/list',
-  'GET /alamat/account/:id': 'AlamatController/listByAccount'
+  'GET /alamat/account/:id': 'AlamatController/listByAccount',
+
+  'GET /province': 'ProvinceController/list',
+  'GET /province/:id': 'ProvinceController/getByID',
+  'GET /regency': 'RegencyController/list',
+  'GET /regency/:province': 'RegencyController/getByProvince',
+  'GET /district': 'DistrictController/list',
+  'GET /district/:regency': 'DistrictController/getByRegency',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
