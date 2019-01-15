@@ -23,7 +23,7 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "sails lift",
     "test": "node ./node_modules/mocha/bin/mocha test/lifecycle.test.js test/integration/**/*.test.js",
     "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
